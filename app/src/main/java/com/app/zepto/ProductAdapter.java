@@ -38,6 +38,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = mProductList.get(position);
 
+        // ⭐⭐⭐ ADDED PRODUCT CLICK LISTENER ⭐⭐⭐
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+
+                // Pass all product data to details page
+                intent.putExtra("productName", product.getName());
+                intent.putExtra("productPrice", product.getPrice());
+                intent.putExtra("productMrp", product.getMrp());
+                intent.putExtra("productQuantity", product.getQuantity());
+                intent.putExtra("productImageResId", product.getImageResId());
+
+                mContext.startActivity(intent);
+            }
+        });
 
         holder.tvProductName.setText(product.getName());
         holder.tvProductPrice.setText(product.getPrice());
@@ -66,22 +82,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 count--;
                 holder.tvItemCount.setText(String.valueOf(count));
             } else {
-
                 holder.cartContainer.setVisibility(View.GONE);
                 holder.btnAddToCart.setVisibility(View.VISIBLE);
             }
         });
 
         holder.btnAddToCart.setOnClickListener(v -> {
-
             CartManager.getInstance().addToCart(product);
-
-
             holder.btnAddToCart.setVisibility(View.GONE);
             holder.cartContainer.setVisibility(View.VISIBLE);
         });
-
-
     }
 
 

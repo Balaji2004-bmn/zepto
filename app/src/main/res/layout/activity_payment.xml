@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,62 +11,67 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Payment Header Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
-            android:padding="10dp"
+            android:padding="16dp"
             android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Payment Options"
-                android:textColor="@color/black"
-                android:fontFamily="@font/montserrat_black"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/total_amount_textview"
-                android:text="To Pay : ₹0.00"
-                android:textColor="@color/green"
-                android:fontFamily="@font/montserrat_black"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="30dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Options"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/total_amount_textview"
+                    android:text="To Pay : ₹0.00"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/montserrat_black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
+        <!-- UPI Payment Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pay by UPI"
             android:textColor="@color/black"
             android:fontFamily="@font/montserrat_black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
-            android:padding="10dp"
+            android:padding="16dp"
             android:layout_marginTop="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,32 +79,30 @@
                     android:text="Pay by any UPI App"
                     android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_black"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    >
+                    android:gravity="center">
 
+                    <!-- Google Pay -->
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="25dp"
-                        >
+                        android:gravity="center">
 
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/gpayy"
                             android:onClick="payWithGpay"
-                            />
+                            android:clickable="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -111,54 +113,52 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:gravity="center"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:layout_marginTop="8dp" />
 
                     </LinearLayout>
 
+                    <!-- PhonePe -->
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="25dp"
-                        >
+                        android:gravity="center">
 
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/phonepe"
                             android:onClick="payWithPhonepe"
-                            />
+                            android:clickable="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phonepe"
+                            android:text="PhonePe"
                             android:textColor="@color/black"
                             android:fontFamily="@font/montserrat_black"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:gravity="center"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:layout_marginTop="8dp" />
 
                     </LinearLayout>
 
+                    <!-- Paytm -->
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="25dp"
-                        >
+                        android:gravity="center">
 
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/paytm"
                             android:onClick="payWithPaytm"
-                            />
+                            android:clickable="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -169,44 +169,48 @@
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:gravity="center"
-                            android:layout_marginTop="5dp"
-                            />
+                            android:layout_marginTop="8dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <!-- Add UPI Button -->
                 <Button
                     android:id="@+id/btn_add_upi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+ Add new UPI Id"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_black"
-                    />
+                    android:fontFamily="@font/montserrat_black" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
+        <!-- Cards Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cards"
             android:textColor="@color/black"
             android:fontFamily="@font/montserrat_black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
-            android:padding="10dp"
-            android:layout_marginTop="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -217,8 +221,9 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/credit"/>
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/credit" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -227,35 +232,38 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/baseline_keyboard_arrow_right_24"/>
+                    android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Cash Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cash"
             android:textColor="@color/black"
             android:fontFamily="@font/montserrat_black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cashCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
-            android:padding="10dp"
-            android:layout_marginTop="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -263,44 +271,45 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Cash On Delivery(COD)"
+                    android:text="Cash On Delivery (COD)"
                     android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/baseline_keyboard_arrow_right_24"/>
+                    android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Pluxee Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pluxee"
             android:textColor="@color/black"
             android:fontFamily="@font/montserrat_black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
-            android:padding="10dp"
-            android:layout_marginTop="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -311,8 +320,9 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/pluxee"/>
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/pluxee" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -321,18 +331,15 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/baseline_keyboard_arrow_right_24"/>
+                    android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-
 
     </LinearLayout>
 

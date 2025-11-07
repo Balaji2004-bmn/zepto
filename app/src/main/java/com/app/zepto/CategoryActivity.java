@@ -66,29 +66,33 @@ public class CategoryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.nav_back) {
+                if (itemId == R.id.nav_home) {
                     Intent intent = new Intent(CategoryActivity.this, ProductPage.class);
                     startActivity(intent);
                     return true;
-
-                } else if(itemId == R.id.nav_categories) {
-                    Intent intent = new Intent(CategoryActivity.this, CategoryActivity.class);
-                    startActivity(intent);
-                    return true;
-                } else if (itemId == R.id.nav_apparel) {
-                    Intent intent = new Intent(CategoryActivity.this, Apparel.class);
-                    startActivity(intent);
-
+                } else if (itemId == R.id.nav_categories) {
+                    // Already on categories page
                     return true;
                 } else if (itemId == R.id.nav_cart) {
                     Intent intent = new Intent(CategoryActivity.this, CartActivity.class);
                     startActivity(intent);
-
+                    return true;
+                } else if (itemId == R.id.nav_orders) {
+                    Intent intent = new Intent(CategoryActivity.this, OrdersActivity.class);
+                    startActivity(intent);
+                    return true;
+                } else if (itemId == R.id.nav_profile) {
+                    // Handle profile navigation
+                    // Intent intent = new Intent(CategoryActivity.this, ProfileActivity.class);
+                    // startActivity(intent);
                     return true;
                 } else {
                     return false;
                 }
             }
         });
+
+// Set categories as selected since we're on categories page
+        bottomNavigationView.setSelectedItemId(R.id.nav_categories);
     }
 }

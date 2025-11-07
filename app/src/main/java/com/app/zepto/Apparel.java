@@ -52,22 +52,26 @@ public class Apparel extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.nav_back) {
+                if (itemId == R.id.nav_home) {
                     Intent intent = new Intent(Apparel.this, ProductPage.class);
                     startActivity(intent);
                     return true;
-
-                } else if(itemId == R.id.nav_categories) {
+                } else if (itemId == R.id.nav_categories) {
                     Intent intent = new Intent(Apparel.this, CategoryActivity.class);
-                    startActivity(intent);
-                    return true;
-                } else if (itemId == R.id.nav_apparel) {
-                    Intent intent = new Intent(Apparel.this, Apparel.class);
                     startActivity(intent);
                     return true;
                 } else if (itemId == R.id.nav_cart) {
                     Intent intent = new Intent(Apparel.this, CartActivity.class);
                     startActivity(intent);
+                    return true;
+                } else if (itemId == R.id.nav_orders) {
+                    Intent intent = new Intent(Apparel.this, OrdersActivity.class);
+                    startActivity(intent);
+                    return true;
+                } else if (itemId == R.id.nav_profile) {
+                    // Handle profile navigation
+                    // Intent intent = new Intent(Apparel.this, ProfileActivity.class);
+                    // startActivity(intent);
                     return true;
                 } else {
                     return false;

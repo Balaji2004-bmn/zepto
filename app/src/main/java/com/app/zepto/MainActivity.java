@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         phoneInput = findViewById(R.id.phoneInput);
         continueButton = findViewById(R.id.continueButton);
 
@@ -32,34 +31,29 @@ public class MainActivity extends AppCompatActivity {
         String fullText = "By continuing, you agree to our \n Terms of Use & Privacy Policy";
         SpannableString spannable = new SpannableString(fullText);
 
-
         spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#FF7050")),
                 32, fullText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         termsText.setText(spannable);
 
-
         continueButton.setOnClickListener(v -> {
-
             String phoneNumber = phoneInput.getText().toString().trim();
 
             if (TextUtils.isEmpty(phoneNumber)) {
-
                 Toast.makeText(MainActivity.this, "Please enter a phone number", Toast.LENGTH_SHORT).show();
             } else if (phoneNumber.length() < 10) {
-
                 Toast.makeText(MainActivity.this, "Phone number must be at least 10 digits", Toast.LENGTH_SHORT).show();
             } else {
-
                 Toast.makeText(MainActivity.this, "Phone number entered: " + phoneNumber, Toast.LENGTH_SHORT).show();
+
+                // ✅ FIXED: Remove the initialize() call - CartManager auto-initializes
+                // Just get the instance to ensure it's created
+                CartManager.getInstance();
 
                 Intent intent = new Intent(MainActivity.this, ProductPage.class);
                 intent.putExtra("phone_number", phoneNumber);
                 startActivity(intent);
-
             }
         });
-
-
     }
 }
