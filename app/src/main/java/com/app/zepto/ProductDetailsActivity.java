@@ -36,7 +36,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void setupProductData() {
-        // Get product from intent
         product = (Product) getIntent().getSerializableExtra("product");
 
         if (product != null) {
@@ -65,23 +64,26 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_home) {
                 startActivity(new Intent(this, ProductPage.class));
+                finish();
                 return true;
             } else if (itemId == R.id.nav_categories) {
                 startActivity(new Intent(this, CategoryActivity.class));
+                finish();
                 return true;
             } else if (itemId == R.id.nav_cart) {
                 startActivity(new Intent(this, CartActivity.class));
+                finish();
                 return true;
             } else if (itemId == R.id.nav_orders) {
                 startActivity(new Intent(this, OrdersActivity.class));
+                finish();
                 return true;
             } else if (itemId == R.id.nav_profile) {
-                // Handle profile navigation
-                // startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
+                finish();
                 return true;
             }
             return false;
         });
-
     }
 }

@@ -21,9 +21,7 @@ import java.util.List;
 public class CategoryActivity extends AppCompatActivity {
 
     private TextView searchBar;
-
     private RecyclerView recyclerView;
-
     private RecyclerView recyclerView1;
     private CategoryAdapter categoryAdapter,categoryAdapter2;
     private List<Category> categoryList;
@@ -41,7 +39,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView1.setLayoutManager(new GridLayoutManager(this, 3));
-
 
         categoryList = new ArrayList<>();
         categoryList.add(new Category("Fruits & Vegetables", R.drawable.fruit));
@@ -61,38 +58,38 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView.setAdapter(categoryAdapter);
         recyclerView1.setAdapter(categoryAdapter2);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
+        setupBottomNavigation();
+    }
 
-                if (itemId == R.id.nav_home) {
-                    Intent intent = new Intent(CategoryActivity.this, ProductPage.class);
-                    startActivity(intent);
-                    return true;
-                } else if (itemId == R.id.nav_categories) {
-                    // Already on categories page
-                    return true;
-                } else if (itemId == R.id.nav_cart) {
-                    Intent intent = new Intent(CategoryActivity.this, CartActivity.class);
-                    startActivity(intent);
-                    return true;
-                } else if (itemId == R.id.nav_orders) {
-                    Intent intent = new Intent(CategoryActivity.this, OrdersActivity.class);
-                    startActivity(intent);
-                    return true;
-                } else if (itemId == R.id.nav_profile) {
-                    // Handle profile navigation
-                    // Intent intent = new Intent(CategoryActivity.this, ProfileActivity.class);
-                    // startActivity(intent);
-                    return true;
-                } else {
-                    return false;
-                }
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, ProductPage.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_categories) {
+                // Already on categories page
+                return true;
+            } else if (itemId == R.id.nav_cart) {
+                startActivity(new Intent(this, CartActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_orders) {
+                startActivity(new Intent(this, OrdersActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                finish();
+                return true;
             }
+            return false;
         });
 
-// Set categories as selected since we're on categories page
+        // Set categories as selected since we're on categories page
         bottomNavigationView.setSelectedItemId(R.id.nav_categories);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView tvTotalPrice, tvEmptyCart, tvSavingsBanner;
     private Button btnCheckout;
     private CartAdapter cartAdapter;
-    private List<CartItem> cartItems; // Changed from Product to CartItem
+    private List<CartItem> cartItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
         setupCartItems();
         setupCheckoutButton();
         checkCartEmpty();
+        setupBottomNavigation(); // ADDED
     }
 
     private void initializeViews() {
@@ -72,11 +74,10 @@ public class CartActivity extends AppCompatActivity {
             Product product = cartItem.getProduct();
             int quantity = cartItem.getQuantity();
 
-            // Handle price format (remove ₹ symbol and convert to double)
             String priceString = product.getPrice().replace("₹", "").trim();
             try {
                 double price = Double.parseDouble(priceString);
-                total += price * quantity; // Multiply by quantity
+                total += price * quantity;
             } catch (NumberFormatException e) {
                 total += 0;
             }
@@ -109,6 +110,45 @@ public class CartActivity extends AppCompatActivity {
             btnCheckout.setAlpha(1.0f);
             btnCheckout.setText("Proceed for Payment");
         }
+    }
+
+    // FIXED: Bottom Navigation Method with null check
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Add null check to prevent crash
+        if (bottomNavigationView == null) {
+            return; // Exit if bottom navigation is not found
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, ProductPage.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_categories) {
+                startActivity(new Intent(this, CategoryActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_cart) {
+                // Already on Cart page
+                return true;
+            } else if (itemId == R.id.nav_orders) {
+                startActivity(new Intent(this, OrdersActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                finish();
+                return true;
+            }
+            return false;
+        });
+
+        // Set current item as selected
+        bottomNavigationView.setSelectedItemId(R.id.nav_cart);
     }
 
     @Override

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Add internet permission for Firebase and network operations -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -68,6 +69,9 @@
             android:name=".ProductDetailsActivity"
             android:exported="false"
             android:label="Product Details" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".OrderTrackingActivity" />
+
 
         <!-- Task 6: Firebase Messaging Service for Push Notifications -->
         <service

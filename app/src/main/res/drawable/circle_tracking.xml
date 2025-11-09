@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="#E0E0E0" />
+
+    <solid android:color="#00B761" />
+    <!-- Or use stroke for hollow circle -->
+    <!--
     <stroke
         android:width="2dp"
         android:color="#00B761" />
+    -->
+
     <size
-        android:width="80dp"
-        android:height="80dp" />
+        android:width="16dp"
+        android:height="16dp" />
 </shape>

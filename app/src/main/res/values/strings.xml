@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Zepto</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="your_cart">Your Cart</string>
+    <string name="empty_cart">Your cart is empty. Add products to continue.</string>
+    <string name="order_placed">Order placed successfully!</string>
+    <string name="address_saved">Address saved successfully!</string>
+    <string name="checkout">Proceed to Checkout</string>
+    <string name="total">Total: ₹%s</string>
+    <string name="my_orders">My Orders</string>
+    <string name="track_order">Track Order</string>
+    <string name="order_tracking">Order Tracking</string>
+    <string name="contact_support">Contact Support</string>
 </resources>

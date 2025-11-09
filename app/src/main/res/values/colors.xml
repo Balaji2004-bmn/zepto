@@ -17,4 +17,23 @@
         <color name="gray">#FF9E9E9E</color>
         <color name="red">#FFF44336</color>
 
+        <color name="colorPrimary">#00B761</color>
+        <color name="colorPrimaryDark">#009950</color>
+        <color name="colorAccent">#FF6B6B</color>
+    <color name="bottom_nav_color">#FF6200EE</color>
+        <!-- Status Colors -->
+
+        <!-- UI Colors -->
+        <color name="background">#F5F5F5</color>
+    <color name="purple_500">#9C27B0</color>
+        <color name="card_background">#FFFFFF</color>
+    <color name="green_primary">#00B761</color>
+    <color name="gray_icon">#9E9E9E</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="background_gray">#F5F5F5</color>
+    <color name="divider_gray">#EEEEEE</color>
+    <color name="logout_red">#F44336</color>
+
+
 </resources>

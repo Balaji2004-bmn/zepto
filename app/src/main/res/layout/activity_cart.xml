@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <!-- Empty Cart Message (ADD THIS) -->
+    <!-- Empty Cart Message -->
     <TextView
         android:id="@+id/tvEmptyCart"
         android:layout_width="match_parent"
@@ -141,5 +141,17 @@
         android:padding="12dp"
         android:background="@drawable/edittext_background"
         />
+
+    <!-- ADD Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        android:background="@color/white"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color" />
 
 </LinearLayout>

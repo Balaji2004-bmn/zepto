@@ -1,96 +1,126 @@
 package com.app.zepto;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private TextView tvUserName, tvUserEmail;
+    private Button btnEditProfile, btnManageAddresses, btnChangePassword, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // Set up back button
-        findViewById(R.id.settingsBackButton).setOnClickListener(v -> onBackPressed());
-
-        // Set up click listeners using IDs
+        initializeViews();
         setupClickListeners();
+        loadUserData();
+        setupBottomNavigation(); // FIXED: Now has null check
+    }
 
-        // Set up food preferences
-        setupFoodPreferences();
+    private void initializeViews() {
+        tvUserName = findViewById(R.id.tvUserName);
+        tvUserEmail = findViewById(R.id.tvUserEmail);
+        btnEditProfile = findViewById(R.id.btnEditProfile);
+        btnManageAddresses = findViewById(R.id.btnManageAddresses);
+        btnChangePassword = findViewById(R.id.btnChangePassword);
+        btnLogout = findViewById(R.id.btnLogout);
     }
 
     private void setupClickListeners() {
-        // Orders items
-        findViewById(R.id.yourOrdersLayout).setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, OrdersActivity.class);
+        btnEditProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
             startActivity(intent);
         });
 
-        findViewById(R.id.ordersLayout).setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, OrdersActivity.class);
-            startActivity(intent);
-        });
-
-        // Help Support
-        findViewById(R.id.helpSupportLayout).setOnClickListener(v -> {
-            Toast.makeText(SettingsActivity.this, "Help & Support", Toast.LENGTH_SHORT).show();
-        });
-
-        findViewById(R.id.supportLayout).setOnClickListener(v -> {
-            Toast.makeText(SettingsActivity.this, "Customer Support & FAQ", Toast.LENGTH_SHORT).show();
-        });
-
-        // Address
-        findViewById(R.id.addressLayout).setOnClickListener(v -> {
+        btnManageAddresses.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, AddressActivity.class);
             startActivity(intent);
         });
 
-        // Zepto Cash
-        findViewById(R.id.zeptoCashLayout).setOnClickListener(v -> {
-            Toast.makeText(SettingsActivity.this, "Zepto Cash", Toast.LENGTH_SHORT).show();
+        btnChangePassword.setOnClickListener(v -> {
+            // Implement change password functionality
+            // Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
+            // startActivity(intent);
+        });
+
+        btnLogout.setOnClickListener(v -> {
+            logoutUser();
         });
     }
 
-    private void setupFoodPreferences() {
-        RadioGroup radioGroup = findViewById(R.id.foodPreferencesGroup);
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            String preference = "";
-            if (checkedId == R.id.radioVegetarian) {
-                preference = "Vegetarian";
-            } else if (checkedId == R.id.radioNonVegetarian) {
-                preference = "Non-Vegetarian";
-            } else if (checkedId == R.id.radioEggitarian) {
-                preference = "Eggitarian";
+    private void loadUserData() {
+        // Load user data from SharedPreferences or database
+        // Example:
+        // String userName = prefs.getString("user_name", "User");
+        // String userEmail = prefs.getString("user_email", "user@example.com");
+
+        tvUserName.setText("John Doe"); // Replace with actual user name
+        tvUserEmail.setText("john.doe@example.com"); // Replace with actual user email
+    }
+
+    private void logoutUser() {
+        // Clear user session
+        android.content.SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        // Navigate to login screen
+        Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    // FIXED: Added null check for bottom navigation
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Add null check to prevent crash
+        if (bottomNavigationView == null) {
+            return; // Exit if bottom navigation is not present
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, ProductPage.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_categories) {
+                startActivity(new Intent(this, CategoryActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_cart) {
+                startActivity(new Intent(this, CartActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_orders) {
+                startActivity(new Intent(this, OrdersActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                // Already on Settings/Profile page
+                return true;
             }
-            Toast.makeText(SettingsActivity.this, "Food preference: " + preference, Toast.LENGTH_SHORT).show();
+            return false;
         });
+
+        // Set current item as selected
+        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
     }
 
-    // Method for Zepto Cash image click (XML onClick)
-    public void zeptoCash(View view) {
-        Toast.makeText(this, "Zepto Cash", Toast.LENGTH_SHORT).show();
-    }
-
-    // ⭐⭐⭐ ADD MISSING PAYMENT METHODS FOR XML onClick ATTRIBUTES ⭐⭐⭐
-
-    public void payWithPhonepe(View view) {
-        Toast.makeText(this, "PhonePe Payment - Redirecting...", Toast.LENGTH_SHORT).show();
-        // You can add navigation to payment page if needed
-        // Intent intent = new Intent(this, PaymentActivity.class);
-        // startActivity(intent);
-    }
-
-    public void payWithGpay(View view) {
-        Toast.makeText(this, "GPay Payment - Redirecting...", Toast.LENGTH_SHORT).show();
-        // You can add navigation to payment page if needed
-        // Intent intent = new Intent(this, PaymentActivity.class);
-        // startActivity(intent);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
