@@ -71,7 +71,6 @@ public class CategoryActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.nav_categories) {
-                // Already on categories page
                 return true;
             } else if (itemId == R.id.nav_cart) {
                 startActivity(new Intent(this, CartActivity.class));
@@ -88,8 +87,6 @@ public class CategoryActivity extends AppCompatActivity {
             }
             return false;
         });
-
-        // Set categories as selected since we're on categories page
         bottomNavigationView.setSelectedItemId(R.id.nav_categories);
     }
 }
