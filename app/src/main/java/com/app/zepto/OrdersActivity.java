@@ -31,11 +31,10 @@ public class OrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_orders);
 
         initializeViews();
-        loadOrdersFromStorage(); // Changed from setupOrderData()
+        loadOrdersFromStorage();
         setupRecyclerView();
         setupBottomNavigation();
 
-        // Check if we came from a new order
         if (getIntent().getBooleanExtra("new_order", false)) {
             String orderId = getIntent().getStringExtra("order_id");
             Toast.makeText(this, "Order placed successfully! ID: " + orderId, Toast.LENGTH_LONG).show();
@@ -65,13 +64,11 @@ public class OrdersActivity extends AppCompatActivity {
                 orderList.addAll(loadedOrders);
                 Log.d(TAG, "Successfully loaded " + orderList.size() + " orders");
 
-                // Debug: Print order details
                 for (Order order : orderList) {
                     Log.d(TAG, "Order: " + order.getOrderId() + " - " + order.getTotalAmount() + " - " + order.getStatus());
                 }
             } else {
                 Log.d(TAG, "No orders found in storage");
-                // You can keep the sample data for testing if you want
                 addSampleOrdersForTesting();
             }
 
@@ -80,7 +77,6 @@ public class OrdersActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, "Error loading orders: " + e.getMessage(), e);
             Toast.makeText(this, "Error loading orders", Toast.LENGTH_SHORT).show();
-            // Fallback to sample data
             addSampleOrdersForTesting();
         }
     }
@@ -154,7 +150,6 @@ public class OrdersActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (itemId == R.id.nav_orders) {
-                    // Already on Orders page
                     return true;
                 } else if (itemId == R.id.nav_profile) {
                     startActivity(new Intent(this, ProfileActivity.class));
@@ -164,7 +159,6 @@ public class OrdersActivity extends AppCompatActivity {
                 return false;
             });
 
-            // Set Orders as selected
             bottomNavigationView.setSelectedItemId(R.id.nav_orders);
         }
     }
@@ -172,7 +166,6 @@ public class OrdersActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload orders when returning to this activity
         loadOrdersFromStorage();
         if (ordersAdapter != null) {
             ordersAdapter.notifyDataSetChanged();
