@@ -41,7 +41,6 @@ public class OrderTrackingActivity extends AppCompatActivity {
         orderDateText.setText("Order Date: " + order.getOrderDate());
         orderTotalText.setText("Total Amount: ₹" + order.getTotalAmount());
 
-        // Display tracking steps
         List<TrackingEvent> events = order.getTrackingEvents();
         trackingContainer.removeAllViews();
 
@@ -62,7 +61,6 @@ public class OrderTrackingActivity extends AppCompatActivity {
         stepName.setText(event.getEventName());
         stepDesc.setText(event.getDescription());
 
-        // Set colors based on completion status
         if (event.isCompleted()) {
             stepIndicator.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
             stepName.setTextColor(ContextCompat.getColor(this, R.color.green));
@@ -71,7 +69,6 @@ public class OrderTrackingActivity extends AppCompatActivity {
             stepName.setTextColor(ContextCompat.getColor(this, R.color.gray));
         }
 
-        // Hide connector for last step
         if (position == totalSteps - 1) {
             stepConnector.setVisibility(View.GONE);
         }
@@ -83,7 +80,6 @@ public class OrderTrackingActivity extends AppCompatActivity {
         findViewById(R.id.backButton).setOnClickListener(v -> finish());
 
         findViewById(R.id.btnContactSupport).setOnClickListener(v -> {
-            // Implement contact support functionality
             android.widget.Toast.makeText(this, "Contacting customer support...",
                     android.widget.Toast.LENGTH_SHORT).show();
         });
