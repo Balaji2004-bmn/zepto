@@ -2,7 +2,7 @@ package com.app.zepto;
 
 import java.io.Serializable;
 
-public class TrackingEvent implements Serializable { // ADD Serializable
+public class TrackingEvent implements Serializable { 
     private String eventName;
     private String description;
     private boolean completed;
@@ -13,7 +13,7 @@ public class TrackingEvent implements Serializable { // ADD Serializable
         this.completed = completed;
     }
 
-    // Getters and Setters
+  
     public String getEventName() { return eventName; }
     public void setEventName(String eventName) { this.eventName = eventName; }
 
