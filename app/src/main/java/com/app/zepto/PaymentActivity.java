@@ -34,8 +34,6 @@ public class PaymentActivity extends AppCompatActivity {
         tvTotalAmount.setText("To Pay : ₹" + String.format("%.2f", totalAmount));
 
         Log.d(TAG, "Payment activity started with amount: " + totalAmount);
-
-        // Set up click listeners
         findViewById(R.id.cashCard).setOnClickListener(v -> payWithCash(v));
         findViewById(R.id.cardCard).setOnClickListener(v -> payWithCard(v));
 
@@ -62,7 +60,6 @@ public class PaymentActivity extends AppCompatActivity {
 
     public void payWithCard(View view) {
         Toast.makeText(this, "Card payment selected", Toast.LENGTH_SHORT).show();
-        // For demo, treat card payment as successful
         processPaymentSuccess("Card Payment");
     }
 
@@ -74,24 +71,15 @@ public class PaymentActivity extends AppCompatActivity {
     private void processPaymentSuccess(String paymentMethod) {
         try {
             Log.d(TAG, "Processing payment success with method: " + paymentMethod);
-
-            // Generate order
             Order newOrder = createOrder(paymentMethod);
             Log.d(TAG, "Created order: " + newOrder.getOrderId());
-
-            // Save order to storage
             boolean saved = saveOrder(newOrder);
             Log.d(TAG, "Order saved: " + saved);
 
             if (saved) {
-                // Show notification
                 NotificationHelper.notifyOrderPlaced(this, newOrder.getOrderId(), totalAmount);
-
-                // Clear cart
                 CartManager.getInstance().clearCart();
                 Log.d(TAG, "Cart cleared");
-
-                // Navigate to orders with success
                 Intent intent = new Intent(this, OrdersActivity.class);
                 intent.putExtra("new_order", true);
                 intent.putExtra("order_id", newOrder.getOrderId());
@@ -114,8 +102,6 @@ public class PaymentActivity extends AppCompatActivity {
         order.setTotalAmount(totalAmount);
         order.setStatus("Placed");
         order.setPaymentMethod(paymentMethod);
-
-        // Add cart items to order
         List<String> orderItems = new ArrayList<>();
         List<CartItem> cartItems = CartManager.getInstance().getCartItems();
 
@@ -149,14 +135,14 @@ public class PaymentActivity extends AppCompatActivity {
 
             Log.d(TAG, "Current orders count before adding: " + orders.size());
 
-            orders.add(0, order); // Add new order at beginning
+            orders.add(0, order); 
 
             String newOrdersJson = gson.toJson(orders);
             Log.d(TAG, "New orders JSON: " + newOrdersJson);
 
             android.content.SharedPreferences.Editor editor = prefs.edit();
             editor.putString("orders", newOrdersJson);
-            boolean saved = editor.commit(); // Use commit() for immediate result
+            boolean saved = editor.commit(); 
 
             Log.d(TAG, "Order saved to SharedPreferences: " + saved);
             return saved;
