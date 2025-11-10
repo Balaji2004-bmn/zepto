@@ -112,13 +112,12 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
-    // FIXED: Bottom Navigation Method with null check
     private void setupBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Add null check to prevent crash
+       
         if (bottomNavigationView == null) {
-            return; // Exit if bottom navigation is not found
+            return; 
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -147,7 +146,7 @@ public class CartActivity extends AppCompatActivity {
             return false;
         });
 
-        // Set current item as selected
+       
         bottomNavigationView.setSelectedItemId(R.id.nav_cart);
     }
 
