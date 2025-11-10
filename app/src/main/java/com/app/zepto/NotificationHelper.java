@@ -109,8 +109,6 @@ public class NotificationHelper {
                 return context.getResources().getColor(R.color.colorPrimary);
         }
     }
-
-    // Static helper methods for quick notifications
     public static void notifyOrderPlaced(Context context, String orderId, double amount) {
         NotificationHelper helper = new NotificationHelper(context);
         String title = "Order Placed Successfully!";
