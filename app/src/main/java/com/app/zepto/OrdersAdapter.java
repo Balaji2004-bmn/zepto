@@ -36,7 +36,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         holder.orderTotal.setText("Total: ₹" + order.getTotalAmount());
         holder.orderStatus.setText(order.getStatus());
 
-        // Display items
         StringBuilder itemsText = new StringBuilder();
         if (order.getItems() != null && !order.getItems().isEmpty()) {
             for (String item : order.getItems()) {
@@ -46,28 +45,22 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
             itemsText.append("No items in this order");
         }
         holder.orderItems.setText(itemsText.toString().trim());
-
-        // Set status color
         setStatusColor(holder.orderStatus, order.getStatus());
 
-        // Add click listener for order tracking - FIXED: Pass individual fields instead of entire object
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, OrderTrackingActivity.class);
-            // Pass individual fields instead of the entire serializable object
             intent.putExtra("orderId", order.getOrderId());
             intent.putExtra("orderDate", order.getOrderDate());
             intent.putExtra("totalAmount", order.getTotalAmount());
             intent.putExtra("status", order.getStatus());
             intent.putExtra("paymentMethod", order.getPaymentMethod());
 
-            // Convert items list to string array
             if (order.getItems() != null) {
                 intent.putExtra("items", order.getItems().toArray(new String[0]));
             }
             context.startActivity(intent);
         });
 
-        // Add long click listener for order options
         holder.itemView.setOnLongClickListener(v -> {
             showOrderOptions(order, position);
             return true;
@@ -98,11 +91,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
 
         statusView.setTextColor(ContextCompat.getColor(context, colorResId));
 
-        // Only set background if the drawable exists
         try {
             statusView.setBackground(ContextCompat.getDrawable(context, R.drawable.status_background));
         } catch (Exception e) {
-            // If status_background doesn't exist, just set text color
         }
     }
 
@@ -111,9 +102,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
         builder.setTitle("Order Options")
                 .setItems(new String[]{"Track Order", "Reorder", "Cancel Order"}, (dialog, which) -> {
                     switch (which) {
-                        case 0: // Track Order
+                        case 0:
                             Intent intent = new Intent(context, OrderTrackingActivity.class);
-                            // Pass individual fields
                             intent.putExtra("orderId", order.getOrderId());
                             intent.putExtra("orderDate", order.getOrderDate());
                             intent.putExtra("totalAmount", order.getTotalAmount());
@@ -125,10 +115,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
                             }
                             context.startActivity(intent);
                             break;
-                        case 1: // Reorder
+                        case 1:
                             reorderItems(order);
                             break;
-                        case 2: // Cancel Order
+                        case 2: 
                             cancelOrder(order, position);
                             break;
                     }
@@ -138,12 +128,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
     }
 
     private void reorderItems(Order order) {
-        // Implement reorder functionality
         android.widget.Toast.makeText(context, "Adding items to cart from order #" + order.getOrderId(),
                 android.widget.Toast.LENGTH_SHORT).show();
 
-        // TODO: Add logic to add order items to cart
-        // CartManager.getInstance().addItemsFromOrder(order);
     }
 
     private void cancelOrder(Order order, int position) {
@@ -152,13 +139,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
             builder.setTitle("Cancel Order")
                     .setMessage("Are you sure you want to cancel order #" + order.getOrderId() + "?")
                     .setPositiveButton("Yes", (dialog, which) -> {
-                        // Update order status
                         order.setStatus("Cancelled");
                         notifyItemChanged(position);
-
-                        // Save updated order to SharedPreferences
                         saveUpdatedOrder(order);
-
                         android.widget.Toast.makeText(context, "Order cancelled successfully",
                                 android.widget.Toast.LENGTH_SHORT).show();
                     })
@@ -171,7 +154,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrderViewH
     }
 
     private void saveUpdatedOrder(Order order) {
-        // Save updated order to SharedPreferences
         android.content.SharedPreferences prefs = context.getSharedPreferences("user_orders", Context.MODE_PRIVATE);
         String ordersJson = prefs.getString("orders", "[]");
 
