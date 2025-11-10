@@ -69,9 +69,7 @@ public class Apparel extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 } else if (itemId == R.id.nav_profile) {
-                    // Handle profile navigation
-                    // Intent intent = new Intent(Apparel.this, ProfileActivity.class);
-                    // startActivity(intent);
+                   
                     return true;
                 } else {
                     return false;
