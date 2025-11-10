@@ -61,6 +61,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String token) {
-        // Save token to your server if needed
     }
 }
