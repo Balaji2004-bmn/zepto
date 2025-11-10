@@ -34,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> attemptLogin());
 
         tvRegister.setOnClickListener(v -> {
-            // Navigate to registration screen if needed
-            // Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            // startActivity(intent);
         });
     }
 
@@ -49,13 +46,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // For demo purposes, simulate successful login
-        // In real app, you would validate with your backend
         if (isValidCredentials(email, password)) {
-            // Save login state
             saveLoginState(email);
-
-            // Navigate to main app
             Intent intent = new Intent(LoginActivity.this, ProductPage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -66,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isValidCredentials(String email, String password) {
-        // Demo validation - replace with actual authentication
         return email.equals("user@example.com") && password.equals("password");
     }
 
@@ -75,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         android.content.SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("is_logged_in", true);
         editor.putString("user_email", email);
-        editor.putString("user_name", "User"); // You'd get this from your auth system
+        editor.putString("user_name", "User"); 
         editor.apply();
     }
 }
