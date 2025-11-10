@@ -44,19 +44,19 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         holder.tvAddress.setText(address.getCompleteAddress());
         holder.tvAddressType.setText(address.getAddressType());
 
-        // Show default badge
+       
         if (address.isDefault()) {
             holder.tvDefault.setVisibility(View.VISIBLE);
         } else {
             holder.tvDefault.setVisibility(View.GONE);
         }
 
-        // Set click listeners
+      
         holder.itemView.setOnClickListener(v -> clickListener.onAddressClick(address));
         holder.btnEdit.setOnClickListener(v -> clickListener.onEditClick(address));
         holder.btnDelete.setOnClickListener(v -> clickListener.onDeleteClick(address));
 
-        // Set as default
+       
         holder.itemView.setOnLongClickListener(v -> {
             if (!address.isDefault()) {
                 clickListener.onSetDefaultClick(address);
