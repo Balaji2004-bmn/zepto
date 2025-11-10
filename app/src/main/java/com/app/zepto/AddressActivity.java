@@ -45,7 +45,6 @@ public class AddressActivity extends AppCompatActivity {
         loadSavedAddresses();
         setupBottomNavigation();
 
-        // Check if we're editing an existing address from intent
         checkEditIntent();
     }
 
@@ -74,11 +73,9 @@ public class AddressActivity extends AppCompatActivity {
         btnSaveAddress.setOnClickListener(v -> saveAddress());
         btnDeleteAddress.setOnClickListener(v -> deleteAddress());
 
-        // Back button
+      
         findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
 
-        // REMOVED: Reference to non-existent btnAddNewAddress
-        // If you want to add a way to show the form, you can add a "Add New Address" button in the layout
     }
 
     private void setupRecyclerView() {
@@ -161,7 +158,7 @@ public class AddressActivity extends AppCompatActivity {
         currentAddress = address;
         isEditing = true;
 
-        // Fill form with address data
+       
         etFullName.setText(address.getFullName());
         etMobile.setText(address.getMobile());
         etPincode.setText(address.getPincode());
@@ -170,7 +167,7 @@ public class AddressActivity extends AppCompatActivity {
         etCity.setText(address.getCity());
         etState.setText(address.getState());
 
-        // Set address type
+       
         if (address.getAddressType().equals("Home")) {
             rgAddressType.check(R.id.rbHome);
         } else if (address.getAddressType().equals("Work")) {
@@ -179,7 +176,7 @@ public class AddressActivity extends AppCompatActivity {
             rgAddressType.check(R.id.rbOther);
         }
 
-        // Update UI for editing
+      
         btnSaveAddress.setText("Update Address");
         btnDeleteAddress.setVisibility(View.VISIBLE);
 
@@ -195,7 +192,7 @@ public class AddressActivity extends AppCompatActivity {
         String city = etCity.getText().toString().trim();
         String state = etState.getText().toString().trim();
 
-        // Get address type
+      
         String addressType = "Home";
         int selectedId = rgAddressType.getCheckedRadioButtonId();
         if (selectedId == R.id.rbWork) {
@@ -208,7 +205,7 @@ public class AddressActivity extends AppCompatActivity {
             Address address;
 
             if (isEditing) {
-                // Update existing address
+               
                 address = currentAddress;
                 address.setFullName(fullName);
                 address.setMobile(mobile);
@@ -219,7 +216,7 @@ public class AddressActivity extends AppCompatActivity {
                 address.setState(state);
                 address.setAddressType(addressType);
             } else {
-                // Create new address
+              
                 address = new Address(
                         fullName, mobile, pincode, addressText,
                         landmark, city, state, addressType
@@ -327,11 +324,10 @@ public class AddressActivity extends AppCompatActivity {
         editText.requestFocus();
     }
 
-    // FIXED: Added null check for bottom navigation
+   
     private void setupBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Add null check to prevent crash
         if (bottomNavigationView == null) {
             return; // Exit if bottom navigation is not present
         }
@@ -363,7 +359,7 @@ public class AddressActivity extends AppCompatActivity {
             return false;
         });
 
-        // Set current item as selected
+       
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);
     }
 
