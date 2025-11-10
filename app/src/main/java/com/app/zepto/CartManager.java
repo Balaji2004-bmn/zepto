@@ -18,7 +18,7 @@ public class CartManager {
         return instance;
     }
 
-    // Add to cart - check if product already exists
+
     public void addToCart(Product product) {
         for (CartItem item : cartItems) {
             if (item.getProduct().getName().equals(product.getName())) {
@@ -27,7 +27,7 @@ public class CartManager {
                 return;
             }
         }
-        // New product, add with quantity 1
+       
         cartItems.add(new CartItem(product, 1));
     }
 
@@ -77,7 +77,4 @@ public class CartManager {
         }
         return total;
     }
-
-    // ✅ REMOVE THIS METHOD IF IT EXISTS:
-    // public void initialize() {}
 }
