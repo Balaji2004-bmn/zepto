@@ -46,16 +46,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.productPrice.setText(product.getPrice());
         holder.productQuantity.setText("Qty: " + quantity);
 
-        // Calculate and display item total
+       
         double itemTotal = calculateItemTotal(product.getPrice(), quantity);
         holder.itemTotal.setText("Item Total: ₹" + String.format("%.2f", itemTotal));
 
         holder.productImage.setImageResource(product.getImageResId());
 
-        // Set quantity
         holder.quantityText.setText(String.valueOf(quantity));
 
-        // Increase quantity
+       
         holder.btnIncrease.setOnClickListener(v -> {
             int newQuantity = quantity + 1;
             CartManager.getInstance().updateQuantity(product, newQuantity);
@@ -64,13 +63,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        // Decrease quantity
+       
         holder.btnDecrease.setOnClickListener(v -> {
             if (quantity > 1) {
                 int newQuantity = quantity - 1;
                 CartManager.getInstance().updateQuantity(product, newQuantity);
             } else {
-                // Remove item if quantity becomes 0
+               
                 CartManager.getInstance().removeFromCart(product);
             }
             if (listener != null) {
@@ -78,7 +77,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-        // Remove item
+     
         holder.btnRemove.setOnClickListener(v -> {
             CartManager.getInstance().removeFromCart(product);
             if (listener != null) {
