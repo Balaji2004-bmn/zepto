@@ -35,17 +35,11 @@ public class ProductPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_page);
-
-        // Initialize views - using correct IDs from your XML
         recyclerView = findViewById(R.id.recyclerview);
         searchBar = findViewById(R.id.search_bar);
         profileIcon = findViewById(R.id.profile);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // Setup RecyclerView
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // Changed to 2 columns for better fit
-
-        // Initialize product list
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); 
         productList = new ArrayList<>();
         productList.add(new Product("Fortune Sunflower", R.drawable.fortune, "₹156", "MRP ₹190", "1 l"));
         productList.add(new Product("Amul taaza Milk(Pouch)", R.drawable.amul_milk, "₹28", "MRP ₹30", "500ml"));
@@ -58,7 +52,6 @@ public class ProductPage extends AppCompatActivity {
         productAdapter = new ProductAdapter(this, filteredList);
         recyclerView.setAdapter(productAdapter);
 
-        // Search functionality
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -72,7 +65,6 @@ public class ProductPage extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        // Profile icon click
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +73,7 @@ public class ProductPage extends AppCompatActivity {
             }
         });
 
-        // Bottom navigation
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -108,7 +100,6 @@ public class ProductPage extends AppCompatActivity {
             }
         });
 
-// Set home as selected since we're on home page
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         // Display phone number if passed from MainActivity
