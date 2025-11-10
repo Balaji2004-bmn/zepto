@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zepto - Grocery Delivery App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+        }
+        .logo { 
+            font-size: 3em; 
+            font-weight: bold; 
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .tagline {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .download-btn {
+            display: inline-block;
+            background: white;
+            color: #4CAF50;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .features {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+        .instructions {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        .warning {
+            background: rgba(255,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">ZEPTO</div>
+        <div class="tagline">Grocery Delivery in Minutes 🚀</div>
+        
+        <!-- Download Button -->
+        <a href="zepto-app.apk" class="download-btn" download>
+            📱 Download Zepto APK
+        </a>
+        
+        <!-- App Info -->
+        <div class="features">
+            <h3>✨ App Features</h3>
+            <ul class="feature-list">
+                <li>Fast grocery delivery</li>
+                <li>Easy product browsing</li>
+                <li>Secure payment options</li>
+                <li>Real-time order tracking</li>
+                <li>Address management</li>
+                <li>Order history</li>
+            </ul>
+        </div>
+        
+        <!-- Installation Guide -->
+        <div class="instructions">
+            <h3>📲 Installation Guide</h3>
+            <div class="step">1. <strong>Download</strong> the APK file above</div>
+            <div class="step">2. <strong>Enable</strong> "Install from unknown sources" in Android Settings</div>
+            <div class="step">3. <strong>Open</strong> the downloaded file</div>
+            <div class="step">4. <strong>Install</strong> and launch the app</div>
+            <div class="step">5. <strong>Start shopping</strong>! 🛒</div>
+        </div>
+        
+        <!-- Warning -->
+        <div class="warning">
+            <strong>⚠️ Important:</strong> You need to enable "Install from unknown sources" in Android Settings to install this app.
+        </div>
+        
+        <!-- Support -->
+        <div style="margin-top: 30px; opacity: 0.8;">
+            <p>Need help? Contact support</p>
+            <p>© 2024 Zepto App. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
