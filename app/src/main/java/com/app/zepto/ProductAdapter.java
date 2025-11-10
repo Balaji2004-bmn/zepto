@@ -37,8 +37,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = mProductList.get(position);
-
-        // ⭐⭐⭐ ADDED PRODUCT CLICK LISTENER ⭐⭐⭐
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
