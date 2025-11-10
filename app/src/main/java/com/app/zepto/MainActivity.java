@@ -23,14 +23,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         phoneInput = findViewById(R.id.phoneInput);
         continueButton = findViewById(R.id.continueButton);
-
         TextView termsText = findViewById(R.id.termText);
         String fullText = "By continuing, you agree to our \n Terms of Use & Privacy Policy";
         SpannableString spannable = new SpannableString(fullText);
-
         spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#FF7050")),
                 32, fullText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -45,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Phone number must be at least 10 digits", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Phone number entered: " + phoneNumber, Toast.LENGTH_SHORT).show();
-
-                // ✅ FIXED: Remove the initialize() call - CartManager auto-initializes
-                // Just get the instance to ensure it's created
                 CartManager.getInstance();
 
                 Intent intent = new Intent(MainActivity.this, ProductPage.class);
