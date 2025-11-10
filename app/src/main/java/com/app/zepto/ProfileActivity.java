@@ -34,7 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadUserData() {
-        // Load user profile data
         android.content.SharedPreferences profilePrefs = getSharedPreferences("user_profile", MODE_PRIVATE);
         String userName = profilePrefs.getString("user_name", "John Doe");
         String userEmail = profilePrefs.getString("user_email", "john.doe@example.com");
@@ -43,8 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
         tvUserName.setText(userName);
         tvUserEmail.setText(userEmail);
         tvUserPhone.setText(userPhone);
-
-        // Load default address to show in profile
         android.content.SharedPreferences addressPrefs = getSharedPreferences("user_addresses", MODE_PRIVATE);
         String addressesJson = addressPrefs.getString("address_list", "[]");
 
@@ -53,7 +50,6 @@ public class ProfileActivity extends AppCompatActivity {
         List<Address> addresses = gson.fromJson(addressesJson, type);
 
         if (addresses != null && !addresses.isEmpty()) {
-            // Find default address or use first one
             Address defaultAddress = null;
             for (Address address : addresses) {
                 if (address.isDefault()) {
@@ -102,12 +98,12 @@ public class ProfileActivity extends AppCompatActivity {
             showAbout();
         });
 
-        // Logout button
+      
         findViewById(R.id.btnLogout).setOnClickListener(v -> {
             logout();
         });
 
-        // Edit profile icon
+      
         findViewById(R.id.ivEditProfile).setOnClickListener(v -> {
             editProfile();
         });
@@ -124,7 +120,7 @@ public class ProfileActivity extends AppCompatActivity {
         android.widget.EditText etEmail = dialogView.findViewById(R.id.etEmail);
         android.widget.EditText etPhone = dialogView.findViewById(R.id.etPhone);
 
-        // Pre-fill current data
+        
         etName.setText(tvUserName.getText().toString());
         etEmail.setText(tvUserEmail.getText().toString());
         etPhone.setText(tvUserPhone.getText().toString());
@@ -139,7 +135,7 @@ public class ProfileActivity extends AppCompatActivity {
                 return;
             }
 
-            // Save to SharedPreferences
+           
             android.content.SharedPreferences prefs = getSharedPreferences("user_profile", MODE_PRIVATE);
             android.content.SharedPreferences.Editor editor = prefs.edit();
             editor.putString("user_name", newName);
@@ -147,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
             editor.putString("user_phone", newPhone);
             editor.apply();
 
-            // Update UI
+          
             tvUserName.setText(newName);
             tvUserEmail.setText(newEmail);
             tvUserPhone.setText(newPhone);
@@ -194,12 +190,9 @@ public class ProfileActivity extends AppCompatActivity {
         builder.setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    // Clear cart and any session data if needed
                     CartManager.getInstance().clearCart();
 
                     android.widget.Toast.makeText(this, "Logged out successfully", android.widget.Toast.LENGTH_SHORT).show();
-
-                    // Navigate to login screen
                     Intent intent = new Intent(this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -231,20 +224,17 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.nav_profile) {
-                // Already on Profile page
                 return true;
             }
             return false;
         });
 
-        // Set current item as selected
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh address when returning from AddressActivity
         loadUserData();
     }
 }
