@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Add internet permission for Firebase and network operations -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -50,21 +49,19 @@
             android:name=".PaymentActivity"
             android:exported="false" />
 
-        <!-- NEW ACTIVITIES FOR YOUR TASKS -->
 
-        <!-- Task 1: My Orders Activity -->
+       
         <activity
             android:name=".OrdersActivity"
             android:exported="false"
             android:label="My Orders" />
 
-        <!-- Task 3: Address Management Activity -->
+    
         <activity
             android:name=".AddressActivity"
             android:exported="false"
             android:label="Add Address" />
 
-        <!-- Task 4: Product Details Activity -->
         <activity
             android:name=".ProductDetailsActivity"
             android:exported="false"
@@ -72,8 +69,6 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".OrderTrackingActivity" />
 
-
-        <!-- Task 6: Firebase Messaging Service for Push Notifications -->
         <service
             android:name=".utils.MyFirebaseMessagingService"
             android:exported="false">
@@ -82,7 +77,6 @@
             </intent-filter>
         </service>
 
-        <!-- Optional: Add this for better Firebase compatibility -->
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="true" />
