@@ -15,12 +15,10 @@ public class ProductEntity {
     private String imageUrl;
     private String category;
 
-    // No-arg constructor (required by Room)
     public ProductEntity() {
         this.id = "";
     }
 
-    // Mark this constructor with @Ignore to fix the warning
     @Ignore
     public ProductEntity(@NonNull String id, String name, String price, String imageUrl, String category) {
         this.id = id;
@@ -30,7 +28,7 @@ public class ProductEntity {
         this.category = category;
     }
 
-    // Getters and setters
+   
     @NonNull
     public String getId() { return id; }
     public void setId(@NonNull String id) { this.id = id; }
