@@ -17,7 +17,6 @@ public class Order implements Serializable {
         this.trackingEvents = new ArrayList<>();
     }
 
-    // Add this constructor
     public Order(String orderId, String orderDate, double totalAmount, String status, List<String> items, String paymentMethod) {
         this.orderId = orderId;
         this.orderDate = orderDate;
@@ -44,7 +43,6 @@ public class Order implements Serializable {
         }
     }
 
-    // Getters and Setters
     public String getOrderId() { return orderId; }
     public void setOrderId(String orderId) { this.orderId = orderId; initializeTracking(); }
 
