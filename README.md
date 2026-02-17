@@ -1,4 +1,4 @@
-# Zepto - Quick Grocery Delivery App 🛒⚡
+# Zepto - 10 minutes Grocery Delivery App 🛒⚡
 
 ## Overview
 Zepto is an Android grocery delivery application that brings fresh groceries and daily essentials to your doorstep in minutes. The app offers a seamless shopping experience with fast delivery, multiple payment options, and real-time order tracking.
