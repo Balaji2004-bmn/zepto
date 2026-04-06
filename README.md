@@ -9,7 +9,7 @@ Zepto is an Android grocery delivery application that brings fresh groceries and
 - **Product Catalog**: Browse through wide range of groceries and daily essentials
 - **Category-wise Organization**: Easy navigation through well-organized categories
 - **Search Functionality**: Find products quickly with intelligent search
-- **Product Details**: Comprehensive product information with images and prices
+
 
 ### 🧾 Order Management
 - **Shopping Cart**: Add/remove items with quantity management
